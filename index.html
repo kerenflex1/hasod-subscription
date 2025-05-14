@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>HaSod Subscription</title>
+  <title>הסוד – מנוי לרמיקסים</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -10,40 +10,86 @@
       color: #00ff00;
       font-family: 'Courier New', Courier, monospace;
       text-align: center;
-      padding: 50px;
+      padding: 40px;
+    }
+
+    img.logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2em;
       margin-bottom: 10px;
     }
 
     p {
       font-size: 1.2em;
       max-width: 600px;
-      margin: 0 auto 40px auto;
+      margin: 0 auto 30px auto;
     }
 
     #paypal-button-container {
       display: inline-block;
-      margin-top: 20px;
+      margin: 30px auto;
+    }
+
+    form {
+      margin-top: 40px;
+    }
+
+    input, textarea {
+      width: 90%;
+      max-width: 400px;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-family: inherit;
+      background-color: #111;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00ff00;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
     }
 
     .glow {
-      color: #00ff00;
       text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
     }
   </style>
 </head>
 <body>
-  <h1 class="glow">Access the Underground</h1>
-  <p>
-    Subscribe now and unlock exclusive access to the top remixes in the world. Updated weekly.<br>
-    Only for those who know where to look.
-  </p>
 
+  <!-- לוגו -->
+  <img src="logo.png" alt="logo" class="logo">
+
+  <!-- כותרת בעברית ואנגלית -->
+  <h1 class="glow">קבלו גישה לרמיקסים הכי חזקים בעולם</h1>
+  <p>
+    הצטרפו למנוי הסודי וקבלו גישה לתיקייה שמתעדכנת <strong>יום-יום</strong> עם הרמיקסים הלוהטים ביותר.  
+    רק למי שבאמת יודע לחפש.
+  </p>
+  <p><em>Subscribe now and unlock daily updated access to the world’s top remixes.</em></p>
+
+  <!-- כפתור PayPal -->
   <div id="paypal-button-container"></div>
 
+  <!-- טופס יצירת קשר (Netlify-compatible) -->
+  <form name="contact" method="POST" data-netlify="true">
+    <h2 class="glow">שלחו לנו הודעה</h2>
+    <input type="text" name="name" placeholder="שם מלא" required><br>
+    <input type="email" name="email" placeholder="כתובת אימייל" required><br>
+    <textarea name="message" rows="4" placeholder="ההודעה שלכם" required></textarea><br>
+    <button type="submit">שלח</button>
+  </form>
+
+  <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=Ad3I2UdnV3sHrwSQh1tFTzasyKxWcEJfPjHLu6bDNOWNpJnZ1YW5RCccpIlgh4Nlvc4CTuoQl73aRddR&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
   <script>
     paypal.Buttons({
@@ -59,9 +105,10 @@
         });
       },
       onApprove: function(data, actions) {
-        alert("Subscription successful! ID: " + data.subscriptionID);
+        alert("המנוי הופעל בהצלחה! מספר מזהה: " + data.subscriptionID);
       }
     }).render('#paypal-button-container');
   </script>
+
 </body>
 </html>
