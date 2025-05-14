@@ -1,0 +1,1 @@
+# hasod-subscription
